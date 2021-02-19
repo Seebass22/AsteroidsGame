@@ -12,10 +12,12 @@ var rotation_dir = 0
 var xSize
 var ySize
 
+
 func _ready():
 	position = startPos
 	xSize = get_viewport_rect().size.x
 	ySize = get_viewport_rect().size.y
+
 
 func get_input():
 	rotation_dir = 0
@@ -25,16 +27,16 @@ func get_input():
 		rotation_dir -= 1
 	if Input.is_action_pressed('forward'):
 		velocity += Vector2(0, -speed).rotated(rotation)
-	if Input.is_action_just_pressed('shoot'):
-		print(get_viewport_rect().size)
+
 
 func _physics_process(delta):
 	get_input()
 	rotation += rotation_dir * rotation_speed * delta
 	velocity = move_and_slide(velocity)
-	velocity -= Vector2(friction, friction)
+	apply_friction()
 	constrain_position()
-	velocity = velocity.clamped(maxSpeed)
+	limit_speed()
+
 
 func constrain_position():
 	if position.x > xSize:
@@ -45,3 +47,11 @@ func constrain_position():
 		position.y = 0
 	if position.y < 0:
 		position.y = ySize
+
+
+func limit_speed():
+	velocity = velocity.clamped(maxSpeed)
+
+
+func apply_friction():
+	velocity -= Vector2(friction, friction)
