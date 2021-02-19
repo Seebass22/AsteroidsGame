@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
 var speed = 5
-var rotation_speed = 1.5
-var friction = 0.1
+var rotationSpeed = 2
+var friction = 1
 var startPos = Vector2(100, 100)
 var maxSpeed = 600
 
 var velocity = Vector2()
-var rotation_dir = 0
+var rotationDir = 0
 
 var xSize
 var ySize
@@ -20,18 +20,18 @@ func _ready():
 
 
 func get_input():
-	rotation_dir = 0
+	rotationDir = 0
 	if Input.is_action_pressed('turn_right'):
-		rotation_dir += 1
+		rotationDir += 1
 	if Input.is_action_pressed('turn_left'):
-		rotation_dir -= 1
+		rotationDir -= 1
 	if Input.is_action_pressed('forward'):
 		velocity += Vector2(0, -speed).rotated(rotation)
 
 
 func _physics_process(delta):
 	get_input()
-	rotation += rotation_dir * rotation_speed * delta
+	rotation += rotationDir * rotationSpeed * delta
 	velocity = move_and_slide(velocity)
 	apply_friction()
 	constrain_position()
@@ -54,4 +54,4 @@ func limit_speed():
 
 
 func apply_friction():
-	velocity -= Vector2(friction, friction)
+	velocity -= velocity.normalized() * friction
