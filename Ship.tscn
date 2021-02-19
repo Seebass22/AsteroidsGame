@@ -4,6 +4,7 @@
 [ext_resource path="res://Ship.gd" type="Script" id=2]
 
 [node name="Ship" type="KinematicBody2D"]
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

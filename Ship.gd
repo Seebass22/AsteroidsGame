@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://FlyingObject.gd"
 
 var speed = 5
 var rotationSpeed = 2
@@ -8,9 +8,6 @@ var maxSpeed = 600
 
 var velocity = Vector2()
 var rotationDir = 0
-
-var xSize
-var ySize
 
 
 func _ready():
@@ -32,21 +29,12 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	rotation += rotationDir * rotationSpeed * delta
-	velocity = move_and_slide(velocity)
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.slide(collision.normal)
 	apply_friction()
 	constrain_position()
 	limit_speed()
-
-
-func constrain_position():
-	if position.x > xSize:
-		position.x = 0
-	if position.x < 0:
-		position.x = xSize
-	if position.y > ySize:
-		position.y = 0
-	if position.y < 0:
-		position.y = ySize
 
 
 func limit_speed():
