@@ -23,9 +23,6 @@ func _physics_process(delta):
 func explode():
 	$ExplosionSound.play()
 	$Sprite.visible = false
-	set_collision_layer_bit(2, false)
-	set_collision_mask_bit(1, false)
-	set_collision_mask_bit(2, false)
-	set_collision_mask_bit(3, false)
+	$CollisionPolygon2D.set_deferred('disabled', true)
 	yield($ExplosionSound, 'finished')
 	queue_free()
