@@ -20,3 +20,7 @@ func _physics_process(delta):
 	if collision:
 		velocity = velocity.slide(collision.normal)
 	constrain_position()
+
+
+func explode():
+	queue_free()
