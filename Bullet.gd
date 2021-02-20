@@ -14,7 +14,6 @@ func _physics_process(delta):
 
 func _ready():
 	setBulletSpeed()
-	destroyAfterSeconds(1)
 
 
 func setBulletSpeed():
@@ -26,6 +25,5 @@ func _on_Bullet_body_entered(body):
 		body.explode()
 
 
-func destroyAfterSeconds(sec):
-	yield(get_tree().create_timer(sec), "timeout")
+func _on_LiveTimer_timeout():
 	queue_free()

@@ -25,6 +25,9 @@ func get_input():
 		rotationDir -= 1
 	if Input.is_action_pressed('forward'):
 		velocity += Vector2(0, -speed).rotated(rotation)
+		if not $ThrustSound.playing:
+			$ThrustSound.pitch_scale = (velocity.length() / 500) + 1
+			$ThrustSound.play()
 	if Input.is_action_just_pressed('shoot'):
 		shoot()
 
@@ -47,7 +50,9 @@ func limit_speed():
 func apply_friction():
 	velocity -= velocity.normalized() * friction
 
+
 func shoot():
+	$ShootSound.play()
 	var bullet = Bullet.instance()
 	bullet.position = position + Vector2(0, -25).rotated(rotation)
 	bullet.velocity = velocity

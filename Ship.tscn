@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/ship.png" type="Texture" id=1]
 [ext_resource path="res://Ship.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Audio/shoot.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/thrust_continuous.wav" type="AudioStream" id=4]
 
 [node name="Ship" type="KinematicBody2D"]
 collision_mask = 2
@@ -15,3 +17,11 @@ texture = ExtResource( 1 )
 position = Vector2( 0.117855, -1.91187 )
 scale = Vector2( 1.40392, 1.59595 )
 polygon = PoolVector2Array( 0.0815886, -10.1537, 9.98632, 2.58387, 9.98632, 9.96915, -10.059, 9.96915, -9.96464, 2.50089 )
+
+[node name="ThrustSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -21.0
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -12.0
