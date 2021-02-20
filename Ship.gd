@@ -9,6 +9,7 @@ var maxSpeed = 600
 var velocity = Vector2()
 var rotationDir = 0
 
+const Bullet = preload("res://Bullet.tscn")
 
 func _ready():
 	position = startPos
@@ -24,6 +25,8 @@ func get_input():
 		rotationDir -= 1
 	if Input.is_action_pressed('forward'):
 		velocity += Vector2(0, -speed).rotated(rotation)
+	if Input.is_action_just_pressed('shoot'):
+		shoot()
 
 
 func _physics_process(delta):
@@ -43,3 +46,11 @@ func limit_speed():
 
 func apply_friction():
 	velocity -= velocity.normalized() * friction
+
+func shoot():
+	print('shoot')
+	var bullet = Bullet.instance()
+	bullet.position = position
+	bullet.linear_velocity = velocity
+	bullet.rotation = rotation
+	get_parent().add_child(bullet)
