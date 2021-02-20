@@ -1,11 +1,7 @@
 extends KinematicBody2D
 
-var xSize
-var ySize
-
-func _ready():
-	xSize = get_viewport_rect().size.x
-	ySize = get_viewport_rect().size.y
+onready var xSize = get_viewport_rect().size.x
+onready var ySize = get_viewport_rect().size.y
 
 func constrain_position():
 	if position.x > xSize:

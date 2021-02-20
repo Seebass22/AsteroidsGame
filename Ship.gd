@@ -48,9 +48,8 @@ func apply_friction():
 	velocity -= velocity.normalized() * friction
 
 func shoot():
-	print('shoot')
 	var bullet = Bullet.instance()
-	bullet.position = position
-	bullet.linear_velocity = velocity
+	bullet.position = position + Vector2(0, -25).rotated(rotation)
+	bullet.velocity = velocity
 	bullet.rotation = rotation
 	get_parent().add_child(bullet)
