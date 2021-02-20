@@ -9,7 +9,9 @@
 [node name="Game" type="Node2D"]
 position = Vector2( 0, 2 )
 script = ExtResource( 5 )
+rootNote = 0
 currentChordType = 0
+playChordProgression = false
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 512, 300 )

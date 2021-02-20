@@ -7,14 +7,26 @@ var noteIndices = [0, 4, 7]
 #            -9 -8  -7 -6  -5 -4 -3  -2 -1  0   1  2
 enum chordType {MAJ, MIN, DIM, AUG}
 
-export (int) var note = -8
+export (int) var rootNote = -8
 export (chordType) var currentChordType = chordType.MIN
+export (bool) var playChordProgression = true
 
 func _ready():
+	if (playChordProgression):
+		play_I_IV_V_I()
+	else:
+		setUpAndPlayChord(rootNote, currentChordType)
+
+
+func setUpAndPlayChord(root, type):
+	notePitchScales = []
+	currentChordType = type
+	rootNote = root
 	getNoteIndices()
-	adjustForNote()
+	adjustForRoot()
 	getPitchScales()
 	setPitchScales()
+	debugPrintNoteInfo()
 	playChord()
 
 
@@ -34,9 +46,9 @@ func getNoteIndices():
 			noteIndices = [0, 4, 8]
 
 
-func adjustForNote():
+func adjustForRoot():
 	for i in range(noteIndices.size()):
-		noteIndices[i] += note
+		noteIndices[i] += rootNote
 
 
 func getPitchScales():
@@ -58,10 +70,17 @@ func playChord():
 
 
 func debugPrintNoteInfo():
-	print(noteIndices[0])
-	print(noteIndices[1])
-	print(noteIndices[2])
+	print('note indices: ', noteIndices)
+	print('note pitch scales: ', notePitchScales)
 
-	print(notePitchScales[0])
-	print(notePitchScales[1])
-	print(notePitchScales[2])
+
+func play_I_IV_V_I():
+	var noteDelay = 0.5
+	var root = rootNote
+	setUpAndPlayChord(root, chordType.MAJ)
+	yield(get_tree().create_timer(noteDelay), "timeout")
+	setUpAndPlayChord(root - 7, chordType.MAJ)
+	yield(get_tree().create_timer(noteDelay), "timeout")
+	setUpAndPlayChord(root -5, chordType.MAJ)
+	yield(get_tree().create_timer(noteDelay), "timeout")
+	setUpAndPlayChord(root, chordType.MAJ)
