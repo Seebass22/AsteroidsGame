@@ -1,4 +1,4 @@
-extends "res://FlyingObject.gd"
+extends "res://src/FlyingObject.gd"
 
 var speed = 250
 var minSpeed = 150

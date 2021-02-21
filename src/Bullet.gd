@@ -1,4 +1,4 @@
-extends "res://FlyingObject.gd"
+extends "res://src/FlyingObject.gd"
 
 var speed = 800
 var velocity = Vector2()

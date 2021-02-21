@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/ship.png" type="Texture" id=1]
-[ext_resource path="res://Ship.gd" type="Script" id=2]
+[ext_resource path="res://src/Ship.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Audio/shoot.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Audio/thrust_continuous.wav" type="AudioStream" id=4]
+
 
 [node name="Ship" type="KinematicBody2D"]
 collision_mask = 2

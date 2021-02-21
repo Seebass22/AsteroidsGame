@@ -4,14 +4,13 @@
 [ext_resource path="res://Asteroid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Audio/piano_A.wav" type="AudioStream" id=3]
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Game.gd" type="Script" id=5]
+[ext_resource path="res://src/Game.gd" type="Script" id=5]
 
 [node name="Game" type="Node2D"]
 position = Vector2( 0, 2 )
 script = ExtResource( 5 )
 rootNote = 0
 currentChordType = 0
-playChordProgression = false
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
