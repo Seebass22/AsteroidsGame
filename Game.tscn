@@ -14,10 +14,10 @@ font_data = ExtResource( 2 )
 [node name="Game" type="Node2D"]
 position = Vector2( 0, 2 )
 script = ExtResource( 5 )
-_score_path = NodePath("UI/HBoxContainer/Score")
+_score_path = NodePath("UI/ScoreContainer/Score")
 _sound_path = NodePath("Sound")
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
@@ -48,7 +48,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+[node name="ScoreContainer" type="HBoxContainer" parent="UI"]
 margin_left = 10.3826
 margin_top = 556.584
 margin_right = 172.383
@@ -58,7 +58,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreText" type="Label" parent="UI/HBoxContainer"]
+[node name="ScoreText" type="Label" parent="UI/ScoreContainer"]
 margin_top = 14.0
 margin_right = 86.0
 margin_bottom = 26.0
@@ -68,7 +68,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="UI/HBoxContainer"]
+[node name="Score" type="Label" parent="UI/ScoreContainer"]
 margin_left = 94.0
 margin_top = 14.0
 margin_right = 140.0

@@ -16,6 +16,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 
+
 func _ready():
 	GameEvents.connect("correct_asteroid", self, "_on_correct_asteroid_destroyed")
 	GameEvents.connect("incorrect_asteroid", self, "_on_incorrect_asteroid_destroyed")
@@ -47,13 +48,11 @@ func update_score():
 
 func _on_correct_asteroid_destroyed(type_destroyed):
 	score += 1
-	print("correct")
 	nextChord(type_destroyed)
 	update_score()
 
 
 func _on_incorrect_asteroid_destroyed(type_destroyed):
-	print("incorrect")
 	nextChord(type_destroyed)
 
 

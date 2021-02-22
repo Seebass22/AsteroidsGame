@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/asteroids/asteroid_large.png" type="Texture" id=1]
 [ext_resource path="res://src/Asteroid.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Audio/explosion.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Fonts/dogicapixelbold.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 4 )
 
 [node name="Asteroid" type="KinematicBody2D"]
 collision_layer = 2
@@ -27,6 +32,7 @@ margin_left = -15.1342
 margin_top = -10.5535
 margin_right = 24.8658
 margin_bottom = 3.44648
+custom_fonts/font = SubResource( 1 )
 text = "Maj"
 __meta__ = {
 "_edit_use_anchors_": false
