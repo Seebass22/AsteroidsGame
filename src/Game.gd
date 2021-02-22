@@ -9,6 +9,7 @@ onready var _score = get_node(_score_path)
 
 var asteroids = []
 var choices = ["maj", "min", "dim", "aug", "sus2", "sus4"]
+var root = 0
 var score = 0
 var max_score = 0
 
@@ -26,6 +27,8 @@ func _ready():
 func set_up_game():
 	randomize()
 	var correct_index = randi() %  choices.size()
+	randomize()
+	root = (randi() % 20) - 10
 	max_score = choices.size()
 
 	for i in range(choices.size()):
@@ -38,7 +41,7 @@ func set_up_game():
 
 		add_child(asteroids[i])
 
-	_sound.setUpAndPlayChord(0, choices[correct_index])
+	_sound.setUpAndPlayChord(root, choices[correct_index])
 	update_score()
 
 
@@ -70,4 +73,4 @@ func nextChord(type_destroyed):
 
 	yield(get_tree().create_timer(1.0), "timeout")
 	if correct_index < choices.size():
-		_sound.setUpAndPlayChord(0, choices[correct_index])
+		_sound.setUpAndPlayChord(root, choices[correct_index])
