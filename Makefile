@@ -16,4 +16,9 @@ windows: build_dir
 	godot --export "Windows Desktop" build/$(GAME_NAME)-windows/$(GAME_NAME).exe
 
 html5: build_dir
-	godot --export "HTML5" build/$(GAME_NAME)-html5/$(GAME_NAME).html
+	godot --export "HTML5" build/$(GAME_NAME)-html5/index.html
+
+itch:
+	butler push build/asteroids-linux/ seebass22/asteroids:linux-x86_64
+	butler push build/asteroids-windows/ seebass22/asteroids:windows-x86_64
+	butler push build/asteroids-html5/ seebass22/asteroids:html5
