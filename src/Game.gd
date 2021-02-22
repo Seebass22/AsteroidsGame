@@ -2,11 +2,15 @@ extends Node2D
 
 const Asteroid = preload("res://Asteroid.tscn")
 
+export (NodePath) var _score_path
 export (NodePath) var _sound_path
 onready var _sound = get_node(_sound_path)
+onready var _score = get_node(_score_path)
 
 var asteroids = []
 var choices = ["maj", "min", "dim", "aug", "sus2", "sus4"]
+var score = 0
+var max_score = 0
 
 func _ready():
 	GameEvents.connect("correct_asteroid", self, "_on_correct_asteroid_destroyed")
@@ -17,6 +21,7 @@ func _ready():
 func set_up_game():
 	randomize()
 	var correct_index = randi() %  choices.size()
+	max_score = choices.size()
 
 	for i in range(choices.size()):
 		asteroids.append(Asteroid.instance())
@@ -29,11 +34,18 @@ func set_up_game():
 		add_child(asteroids[i])
 
 	_sound.setUpAndPlayChord(0, choices[correct_index])
+	update_score()
+
+
+func update_score():
+	_score.set_text("%d/%d" % [score, max_score])
 
 
 func _on_correct_asteroid_destroyed(type_destroyed):
+	score += 1
 	print("correct")
 	nextChord(type_destroyed)
+	update_score()
 
 
 func _on_incorrect_asteroid_destroyed(type_destroyed):
