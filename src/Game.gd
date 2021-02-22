@@ -54,4 +54,5 @@ func nextChord(type_destroyed):
 	asteroids[correct_index].is_correct = true
 
 	yield(get_tree().create_timer(1.0), "timeout")
-	_sound.setUpAndPlayChord(0, choices[correct_index])
+	if correct_index < choices.size():
+		_sound.setUpAndPlayChord(0, choices[correct_index])
