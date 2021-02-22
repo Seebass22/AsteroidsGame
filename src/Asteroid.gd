@@ -28,6 +28,11 @@ func _physics_process(delta):
 
 
 func explode():
+	if is_correct:
+		GameEvents.emit_signal("correct_asteroid")
+	else:
+		GameEvents.emit_signal("incorrect_asteroid")
+
 	$ExplosionSound.play()
 	$Sprite.visible = false
 	$Label.text = ""

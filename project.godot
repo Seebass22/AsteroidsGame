@@ -19,6 +19,10 @@ config/name="Asteroids"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameEvents="*res://src/GameEvents.gd"
+
 [display]
 
 window/size/resizable=false
