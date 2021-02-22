@@ -6,9 +6,7 @@
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Game.gd" type="Script" id=5]
 [ext_resource path="res://src/Sound.gd" type="Script" id=6]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.898039, 0.690196, 0.513726, 0 )
+[ext_resource path="res://src/Correct.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
@@ -16,7 +14,7 @@ font_data = ExtResource( 2 )
 [node name="Game" type="Node2D"]
 position = Vector2( 0, 2 )
 script = ExtResource( 5 )
-_score_path = NodePath("Control/HBoxContainer/Score")
+_score_path = NodePath("UI/HBoxContainer/Score")
 _sound_path = NodePath("Sound")
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -43,25 +41,14 @@ volume_db = -21.0
 stream = ExtResource( 3 )
 volume_db = -21.0
 
-[node name="UI" type="Panel" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = 558.0
-margin_right = 225.0
-margin_bottom = 598.0
-custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 margin_left = 10.3826
 margin_top = 556.584
 margin_right = 172.383
@@ -71,7 +58,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreText" type="Label" parent="Control/HBoxContainer"]
+[node name="ScoreText" type="Label" parent="UI/HBoxContainer"]
 margin_top = 14.0
 margin_right = 86.0
 margin_bottom = 26.0
@@ -81,13 +68,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="Control/HBoxContainer"]
+[node name="Score" type="Label" parent="UI/HBoxContainer"]
 margin_left = 94.0
 margin_top = 14.0
 margin_right = 140.0
 margin_bottom = 26.0
 custom_fonts/font = SubResource( 2 )
 text = "1/6"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Correct" type="Label" parent="UI"]
+margin_left = 894.673
+margin_top = 574.561
+margin_right = 1008.67
+margin_bottom = 586.561
+custom_fonts/font = SubResource( 2 )
+text = "Correct!"
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
