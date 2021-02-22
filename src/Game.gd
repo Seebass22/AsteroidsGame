@@ -12,6 +12,10 @@ var choices = ["maj", "min", "dim", "aug", "sus2", "sus4"]
 var score = 0
 var max_score = 0
 
+func _process(delta):
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
+
 func _ready():
 	GameEvents.connect("correct_asteroid", self, "_on_correct_asteroid_destroyed")
 	GameEvents.connect("incorrect_asteroid", self, "_on_incorrect_asteroid_destroyed")
