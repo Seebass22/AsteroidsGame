@@ -5,7 +5,7 @@ var noteIndices = [0, 4, 7]
 
 # enum note {C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B}
 #            -9 -8  -7 -6  -5 -4 -3  -2 -1  0   1  2
-enum chordType {MAJ, MIN, DIM, AUG}
+enum chordType {MAJ, MIN, DIM, AUG, SUS2, SUS4}
 
 export (int) var rootNote = -8
 export (chordType) var currentChordType = chordType.MIN
@@ -44,6 +44,10 @@ func getNoteIndices():
 			noteIndices = [0, 3, 6]
 		chordType.AUG:
 			noteIndices = [0, 4, 8]
+		chordType.SUS2:
+			noteIndices = [0, 2, 7]
+		chordType.SUS4:
+			noteIndices = [0, 5, 7]
 
 
 func adjustForRoot():
