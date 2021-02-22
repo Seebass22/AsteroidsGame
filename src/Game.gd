@@ -14,7 +14,7 @@ func _ready():
 
 
 func set_up_game():
-	var choices = ["Maj", "Min", "Dim", "Aug", "sus2", "sus4"]
+	var choices = ["maj", "min", "dim", "aug", "sus2", "sus4"]
 	randomize()
 	var correct_index = randi() %  choices.size()
 
@@ -27,6 +27,8 @@ func set_up_game():
 			asteroids[i].is_correct = true
 
 		add_child(asteroids[i])
+
+	_sound.setUpAndPlayChord(0, choices[correct_index])
 
 
 func _on_correct_asteroid_destroyed():

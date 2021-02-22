@@ -21,7 +21,6 @@ texture = ExtResource( 1 )
 [node name="Sound" type="Node" parent="."]
 script = ExtResource( 6 )
 rootNote = 0
-currentChordType = 0
 playChordProgression = false
 
 [node name="Note1" type="AudioStreamPlayer" parent="Sound"]
