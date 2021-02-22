@@ -1,7 +1,5 @@
 GAME_NAME = asteroids
 
-default: linux
-
 all: linux html5 windows
 
 build_dir:
