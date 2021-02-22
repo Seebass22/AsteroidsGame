@@ -1,5 +1,7 @@
 extends "res://src/FlyingObject.gd"
 
+var label_text = "Maj"
+var is_correct: bool = false
 var speed = 250
 var minSpeed = 150
 var maxSpeed = 350
@@ -11,6 +13,11 @@ func _ready():
 	rotation = randi() % 360
 	speed = rand_range(minSpeed, maxSpeed)
 	velocity = Vector2(0, 1).rotated(deg2rad(rotation)) * speed
+	$Label.text = label_text
+
+
+func _process(delta): 
+	$Label.set_rotation(-rotation)
 
 
 func _physics_process(delta):
@@ -23,6 +30,7 @@ func _physics_process(delta):
 func explode():
 	$ExplosionSound.play()
 	$Sprite.visible = false
+	$Label.text = ""
 	$CollisionPolygon2D.set_deferred('disabled', true)
 	yield($ExplosionSound, 'finished')
 	queue_free()
