@@ -12,6 +12,7 @@ var rotationDir = 0
 const Bullet = preload("res://Bullet.tscn")
 
 func _ready():
+	set_wrap_margin(15)
 	position = startPos
 	xSize = get_viewport_rect().size.x
 	ySize = get_viewport_rect().size.y

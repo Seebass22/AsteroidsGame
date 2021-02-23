@@ -9,6 +9,7 @@ var maxSpeed = 350
 var velocity = Vector2()
 
 func _ready():
+	set_wrap_margin(20)
 	randomize()
 	rotation = randi() % 360
 	speed = rand_range(minSpeed, maxSpeed)
@@ -25,6 +26,12 @@ func _physics_process(delta):
 	if collision:
 		velocity = velocity.slide(collision.normal)
 	constrain_position()
+	constrain_velocity()
+
+
+func constrain_velocity():
+	if velocity.length() < 100:
+		velocity = velocity.normalized() * 15
 
 
 func explode():

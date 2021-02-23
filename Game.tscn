@@ -8,7 +8,7 @@
 [ext_resource path="res://src/Sound.gd" type="Script" id=6]
 [ext_resource path="res://src/Correct.gd" type="Script" id=7]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
 
 [node name="Game" type="Node2D"]
@@ -62,7 +62,7 @@ __meta__ = {
 margin_top = 14.0
 margin_right = 86.0
 margin_bottom = 26.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Score:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -73,7 +73,7 @@ margin_left = 94.0
 margin_top = 14.0
 margin_right = 140.0
 margin_bottom = 26.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "1/6"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -84,7 +84,7 @@ margin_left = 894.673
 margin_top = 574.561
 margin_right = 1008.67
 margin_bottom = 586.561
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Correct!"
 script = ExtResource( 7 )
 __meta__ = {
