@@ -21,7 +21,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GameEvents="*res://src/GameEvents.gd"
+GameEvents="*res://src/Singletons/GameEvents.gd"
+Results="*res://src/Singletons/Results.gd"
 
 [display]
 

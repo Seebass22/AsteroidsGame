@@ -25,12 +25,16 @@ func _ready():
 
 
 func set_up_game():
+	# choose correct asteroid, root note
 	randomize()
 	var correct_index = randi() %  choices.size()
 	randomize()
 	root = (randi() % 20) - 10
-	max_score = choices.size()
 
+	max_score = choices.size()
+	Results.max_score = max_score
+
+	# spawn asteroids
 	for i in range(choices.size()):
 		asteroids.append(Asteroid.instance())
 
@@ -47,6 +51,11 @@ func set_up_game():
 
 func update_score():
 	_score.set_text("%d/%d" % [score, max_score])
+
+	if choices.size() == 0:
+		Results.final_score = score
+		yield(get_tree().create_timer(2.0), "timeout")
+		get_tree().change_scene("res://Game Over.tscn")
 
 
 func _on_correct_asteroid_destroyed(type_destroyed):

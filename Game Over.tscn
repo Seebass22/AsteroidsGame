@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/space_background_2.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Fonts/dogicapixelbold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/dogicapixel.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/Game Over Screen.gd" type="Script" id=4]
+[ext_resource path="res://Assets/button_small.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[node name="Game Over" type="Node2D"]
+script = ExtResource( 4 )
+_score_path = NodePath("VBoxContainer/HBoxContainer/Score")
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 438.406
+margin_top = 176.777
+margin_right = 478.406
+margin_bottom = 216.777
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 202.0
+margin_bottom = 12.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreText" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 148.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 1 )
+text = "you scored"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 156.0
+margin_right = 202.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 1 )
+text = "1/6"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 202.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="Label" parent="VBoxContainer/TextureButton"]
+margin_left = 44.2743
+margin_top = 17.705
+margin_right = 246.274
+margin_bottom = 35.705
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.12549, 0.156863, 0.239216, 1 )
+text = "restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_up" from="VBoxContainer/TextureButton" to="." method="_on_Restart_button_up"]
