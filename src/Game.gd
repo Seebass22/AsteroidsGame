@@ -9,6 +9,7 @@ onready var _score = get_node(_score_path)
 
 var asteroids = []
 var choices = ["maj", "min", "dim", "aug", "sus2", "sus4"]
+# var choices = ["7", "maj7", "min7", "dim7", "half-dim7", "min-maj7"]
 var root = 0
 var score = 0
 var max_score = 0

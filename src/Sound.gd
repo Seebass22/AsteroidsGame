@@ -2,6 +2,7 @@ extends Node
 
 var notePitchScales = []
 var noteIndices = [0, 4, 7]
+var noteNode = []
 
 # enum note {C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B}
 #            -9 -8  -7 -6  -5 -4 -3  -2 -1  0   1  2
@@ -13,8 +14,13 @@ export (String) var currentChordType = "maj"
 export (bool) var playChordProgression = true
 
 func _ready():
+	noteNode.append($Note1)
+	noteNode.append($Note2)
+	noteNode.append($Note3)
+	noteNode.append($Note4)
 	if test:
 		__test()
+
 
 func setUpAndPlayChord(root, type):
 	notePitchScales = []
@@ -45,6 +51,19 @@ func getNoteIndices():
 			noteIndices = [0, 2, 7]
 		"sus4":
 			noteIndices = [0, 5, 7]
+		# 7th chords
+		"7":
+			noteIndices = [0, 4, 7, 10]
+		"maj7":
+			noteIndices = [0, 4, 7, 11]
+		"min7":
+			noteIndices = [0, 3, 7, 10]
+		"dim7":
+			noteIndices = [0, 3, 6, 9]
+		"half-dim7":
+			noteIndices = [0, 3, 6, 10]
+		"min-maj7":
+			noteIndices = [0, 3, 7, 11]
 
 
 func adjustForRoot():
@@ -53,21 +72,18 @@ func adjustForRoot():
 
 
 func getPitchScales():
-	notePitchScales.append(getNoteForIndex(noteIndices[0]))
-	notePitchScales.append(getNoteForIndex(noteIndices[1]))
-	notePitchScales.append(getNoteForIndex(noteIndices[2]))
+	for i in range(noteIndices.size()):
+		notePitchScales.append(getNoteForIndex(noteIndices[i]))
 
 
 func setPitchScales():
-	$Note1.pitch_scale = notePitchScales[0]
-	$Note2.pitch_scale = notePitchScales[1]
-	$Note3.pitch_scale = notePitchScales[2]
+	for i in range(notePitchScales.size()):
+		noteNode[i].pitch_scale = notePitchScales[i]
 
 
 func playChord():
-	$Note1.play()
-	$Note2.play()
-	$Note3.play()
+	for i in range(notePitchScales.size()):
+		noteNode[i].play()
 
 
 func debugPrintNoteInfo():
