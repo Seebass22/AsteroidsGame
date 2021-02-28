@@ -4,7 +4,8 @@ export (NodePath) var _score_path
 onready var _score = get_node(_score_path)
 
 func _ready():
-	_score.set_text("%d / %d" % [Results.final_score, Results.max_score])
+	var percentage = (Results.final_score / Results.max_score as float) * 100
+	_score.set_text("%d / %d (%d%%)" % [Results.final_score, Results.max_score, percentage])
 
 
 func _on_Restart_button_up():
