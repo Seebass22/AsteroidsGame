@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/space_background_2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/dogicapixelbold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/Fonts/dogicapixel.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/Game Over Screen/Game Over Screen.gd" type="Script" id=4]
 [ext_resource path="res://Assets/button_small.png" type="Texture" id=5]
-[ext_resource path="res://src/Game Over Screen/ButtonsTween.gd" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -29,7 +28,6 @@ margin_top = 205.404
 margin_right = 690.07
 margin_bottom = 277.404
 custom_constants/separation = 16
-script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

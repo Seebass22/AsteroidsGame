@@ -7,6 +7,8 @@ func _ready():
 	if OS.get_name() == "HTML5":
 		_quit_button.visible = false
 
+	TweenLib.tween_in_from_left($Buttons)
+
 
 func _on_PlayButton_button_up():
 	get_tree().change_scene("res://Game.tscn")

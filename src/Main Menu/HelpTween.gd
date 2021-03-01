@@ -1,11 +1,7 @@
 extends NinePatchRect
 
-var target_position
+onready var target_position = rect_position
 onready var tween_node = get_node("Tween")
-
-func _ready():
-	target_position = rect_position
-
 
 func tween_in():
 	rect_position = Vector2(rect_position.x, -600)
