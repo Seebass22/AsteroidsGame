@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/space_background_3.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/dogicapixelbold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/Fonts/dogicapixel.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/menu_panel.png" type="Texture" id=4]
 [ext_resource path="res://Assets/button_small.png" type="Texture" id=5]
-[ext_resource path="res://src/Main Menu.gd" type="Script" id=6]
+[ext_resource path="res://src/Main Menu/Main Menu.gd" type="Script" id=6]
+[ext_resource path="res://src/Main Menu/MenuButtonsTween.gd" type="Script" id=7]
+[ext_resource path="res://src/Main Menu/HelpTween.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -31,6 +33,7 @@ margin_top = 209.0
 margin_right = 861.0
 margin_bottom = 373.0
 custom_constants/separation = 16
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -100,6 +103,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Tween" type="Tween" parent="Buttons"]
+
 [node name="Help" type="NinePatchRect" parent="."]
 visible = false
 margin_left = 72.0317
@@ -111,6 +116,7 @@ patch_margin_left = 24
 patch_margin_top = 24
 patch_margin_right = 24
 patch_margin_bottom = 24
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -203,6 +209,8 @@ text = "Identify and shoot the
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="Help"]
 [connection signal="button_up" from="Buttons/PlayButton" to="." method="_on_PlayButton_button_up"]
 [connection signal="button_up" from="Buttons/HelpButton" to="." method="_on_HelpButton_button_up"]
 [connection signal="button_up" from="Buttons/QuitButton" to="." method="_on_QuitButton_button_up"]

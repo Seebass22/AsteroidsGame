@@ -14,6 +14,7 @@ func _on_PlayButton_button_up():
 
 func _on_HelpButton_button_up():
 	$Help.visible = not $Help.visible
+	$Help.tween_in()
 
 
 func _on_QuitButton_button_up():
