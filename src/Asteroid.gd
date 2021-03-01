@@ -44,8 +44,13 @@ func explode():
 		GameEvents.emit_signal("incorrect_asteroid", label_text)
 
 	$ExplosionSound.play()
-	$Sprite.visible = false
 	label.text = ""
+	$Sprite.animation = "explode"
+	$ExplosionTimer.start()
 	$CollisionPolygon2D.set_deferred('disabled', true)
 	yield($ExplosionSound, 'finished')
 	queue_free()
+
+
+func _on_ExplosionTimer_timeout():
+	$Sprite.visible = false
