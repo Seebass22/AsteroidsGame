@@ -18,6 +18,7 @@ font_data = ExtResource( 3 )
 
 [node name="Main Menu" type="Node2D"]
 script = ExtResource( 6 )
+_quit_path = NodePath("Buttons/QuitButton")
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
