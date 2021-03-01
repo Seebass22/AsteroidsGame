@@ -10,3 +10,12 @@ func _ready():
 
 func _on_Restart_button_up():
 	get_tree().change_scene("res://Game.tscn")
+
+
+func _on_Menu_button_up():
+	get_tree().change_scene("res://Main Menu.tscn")
+
+
+func _on_Quit_button_up():
+	if OS.get_name() != "HTML5":
+		get_tree().quit()
