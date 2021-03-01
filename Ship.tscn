@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/ship.png" type="Texture" id=1]
 [ext_resource path="res://src/Ship.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Audio/shoot.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Audio/thrust_continuous.wav" type="AudioStream" id=4]
-
+[ext_resource path="res://Assets/bullet_flash.png" type="Texture" id=5]
 
 [node name="Ship" type="KinematicBody2D"]
 collision_mask = 2
@@ -26,3 +26,13 @@ volume_db = -21.0
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -12.0
+
+[node name="bullet_flash" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -16 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="bullet_flash"]
+wait_time = 0.1
+[connection signal="timeout" from="bullet_flash/Timer" to="." method="_on_bullet_flash_Timer_timeout"]

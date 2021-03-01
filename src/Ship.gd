@@ -59,3 +59,13 @@ func shoot():
 	bullet.velocity = velocity
 	bullet.rotation = rotation
 	get_parent().add_child(bullet)
+	flash()
+
+
+func flash():
+	$bullet_flash.visible = true
+	$bullet_flash/Timer.start()
+
+
+func _on_bullet_flash_Timer_timeout():
+	$bullet_flash.visible = false
