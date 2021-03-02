@@ -11,7 +11,7 @@ func _ready():
 	if OS.get_name() == "HTML5":
 		_quit_button.visible = false
 	
-	TweenLib.tween_in_from_left($Menu)
+	TweenLib.tween_in_from_left($Menu, 1)
 
 
 func set_score_label():
