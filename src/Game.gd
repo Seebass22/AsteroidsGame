@@ -13,14 +13,19 @@ var starting_choices = ["maj", "min", "dim", "aug", "sus2", "sus4"]
 
 var choices
 var root = 0
+var current_chord
 var score = 0
 var max_score = 0
+var replays_left
 
 var rounds = 3
+var max_replays = 3
 
 func _process(delta):
-	if Input.is_action_just_pressed("restart"):
-		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("replay"):
+		if replays_left > 0:
+			_sound.setUpAndPlayChord(root, current_chord)
+			replays_left -= 1
 
 
 func _ready():
@@ -37,32 +42,40 @@ func initialize():
 
 
 func set_up_game():
-	# choose correct asteroid, root note
 	choices = starting_choices.duplicate()
-	randomize()
-	var correct_index = randi() %  choices.size()
-	randomize()
-	root = (randi() % 20) - 10
 
+	choose_root()
+	reset_replays_left()
 	reset_score()
 
 	# spawn asteroids
 	for i in range(choices.size()):
 		asteroids.append(Asteroid.instance())
-
 		asteroids[i].position = Vector2(i * 150, 100)
 		asteroids[i].label_text = choices[i]
-		if i == correct_index:
-			asteroids[i].is_correct = true
-
 		add_child(asteroids[i])
 
-	_sound.setUpAndPlayChord(root, choices[correct_index])
+	choose_correct_asteroid()
+
+	_sound.setUpAndPlayChord(root, current_chord)
 	update_score()
+
+
+func choose_root():
+	randomize()
+	root = (randi() % 20) - 10
 
 
 func reset_score():
 	score = 0
+
+
+func choose_correct_asteroid():
+	randomize()
+	var correct_index = randi() %  choices.size()
+	asteroids[correct_index].is_correct = true
+	current_chord = choices[correct_index]
+	return correct_index
 
 
 func update_score():
@@ -89,26 +102,33 @@ func finish_round():
 
 func _on_correct_asteroid_destroyed(type_destroyed):
 	score += 1
-	nextChord(type_destroyed)
+	next_chord(type_destroyed)
 	update_score()
 
 
 func _on_incorrect_asteroid_destroyed(type_destroyed):
-	nextChord(type_destroyed)
+	next_chord(type_destroyed)
 
 
-func nextChord(type_destroyed):
-	var rm_index = choices.find(type_destroyed)
-	asteroids.remove(rm_index)
-	choices.remove(rm_index)
+func next_chord(type_destroyed):
+	reset_replays_left()
+	remove_destroyed_chord(type_destroyed)
 
-	if asteroids.size() == 0:
+	if is_round_over():
 		return
 
-	randomize()
-	var correct_index = randi() %  choices.size()
-	asteroids[correct_index].is_correct = true
+	var correct_index = choose_correct_asteroid()
 
 	yield(get_tree().create_timer(1.0), "timeout")
 	if correct_index < choices.size():
-		_sound.setUpAndPlayChord(root, choices[correct_index])
+		_sound.setUpAndPlayChord(root, current_chord)
+
+
+func remove_destroyed_chord(type):
+	var rm_index = choices.find(type)
+	asteroids.remove(rm_index)
+	choices.remove(rm_index)
+
+
+func reset_replays_left():
+	replays_left = max_replays

@@ -171,7 +171,7 @@ text = "arrow keys - turn and thrust
 
 space - shoot
 
-R - restart level"
+R - replay chord"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -190,7 +190,7 @@ margin_right = 142.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.12549, 0.156863, 0.239216, 1 )
-text = "Chord mode:"
+text = "chord mode:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -201,9 +201,9 @@ margin_right = 420.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.12549, 0.156863, 0.239216, 1 )
-text = "Identify and shoot the
+text = "identify and shoot the
 
- chord that plays"
+chord that plays"
 __meta__ = {
 "_edit_use_anchors_": false
 }
