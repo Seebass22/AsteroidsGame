@@ -17,7 +17,10 @@ var current_chord
 var score = 0
 var max_score = 0
 var replays_left
+var asteroids_left_in_round
+var game_over = false
 
+var round_length = 6
 var rounds = 3
 var max_replays = 3
 
@@ -47,12 +50,13 @@ func set_up_game():
 	choose_root()
 	reset_replays_left()
 	reset_score()
+	reset_asteroids_left_in_round()
 
 	# spawn asteroids
 	for i in range(choices.size()):
-		asteroids.append(Asteroid.instance())
-		asteroids[i].position = Vector2(i * 150, 100)
-		asteroids[i].label_text = choices[i]
+		var type = choices[i]
+		var new_asteroid = spawn_asteroid(type)
+		asteroids.append(new_asteroid)
 		add_child(asteroids[i])
 
 	choose_correct_asteroid()
@@ -66,8 +70,17 @@ func choose_root():
 	root = (randi() % 20) - 10
 
 
+func reset_replays_left():
+	replays_left = max_replays
+
+
 func reset_score():
 	score = 0
+
+
+func reset_asteroids_left_in_round():
+	print('reset')
+	asteroids_left_in_round = round_length
 
 
 func choose_correct_asteroid():
@@ -86,33 +99,48 @@ func update_score():
 
 
 func is_round_over():
-	return choices.size() == 0
+	return asteroids_left_in_round < 1
 
 
 func finish_round():
 		Results.final_score += score
-		yield(get_tree().create_timer(2.0), "timeout")
 
 		rounds -= 1
 		if rounds > 0:
 			set_up_game()
 		else:
+			game_over = true
+			yield(get_tree().create_timer(2.0), "timeout")
 			get_tree().change_scene("res://Game Over.tscn")
 
 
 func _on_correct_asteroid_destroyed(type_destroyed):
+	if game_over:
+		return
+	asteroids_left_in_round -= 1
 	score += 1
+	check_round_over()
 	next_chord(type_destroyed)
 	update_score()
 
 
 func _on_incorrect_asteroid_destroyed(type_destroyed):
+	if game_over:
+		return
+	asteroids_left_in_round -= 1
+	check_round_over()
 	next_chord(type_destroyed)
 
 
+func check_round_over():
+	if is_round_over():
+		finish_round()
+
+
 func next_chord(type_destroyed):
+	print(asteroids_left_in_round)
 	reset_replays_left()
-	remove_destroyed_chord(type_destroyed)
+	replace_destroyed_asteroid(type_destroyed)
 
 	if is_round_over():
 		return
@@ -124,11 +152,22 @@ func next_chord(type_destroyed):
 		_sound.setUpAndPlayChord(root, current_chord)
 
 
-func remove_destroyed_chord(type):
-	var rm_index = choices.find(type)
-	asteroids.remove(rm_index)
-	choices.remove(rm_index)
+func replace_destroyed_asteroid(type):
+	var index = choices.find(type)
+
+	var new_asteroid = spawn_asteroid(type)
+
+	asteroids[index] = new_asteroid
+	add_child(new_asteroid)
 
 
-func reset_replays_left():
-	replays_left = max_replays
+func spawn_asteroid(type):
+	randomize()
+	var x_pos = randi() % 1024
+	var y_pos = (randi() % 2) * 600
+
+	var new_asteroid = Asteroid.instance()
+	new_asteroid.position = Vector2(x_pos, y_pos)
+	new_asteroid.label_text = type
+
+	return new_asteroid

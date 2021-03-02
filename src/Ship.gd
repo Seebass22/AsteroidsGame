@@ -3,7 +3,7 @@ extends "res://src/FlyingObject.gd"
 var speed = 5
 var rotationSpeed = 2
 var friction = 1
-var startPos = Vector2(100, 100)
+var startPos = Vector2(512, 300)
 var maxSpeed = 600
 
 var velocity = Vector2()
