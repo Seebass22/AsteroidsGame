@@ -84,6 +84,9 @@ func reset_asteroids_left_in_round():
 
 
 func choose_correct_asteroid():
+	for i in asteroids.size():
+		asteroids[i].is_correct = false
+
 	randomize()
 	var correct_index = randi() %  choices.size()
 	asteroids[correct_index].is_correct = true
