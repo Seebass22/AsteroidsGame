@@ -25,12 +25,27 @@ func get_input():
 	if Input.is_action_pressed('turn_left'):
 		rotationDir -= 1
 	if Input.is_action_pressed('forward'):
-		velocity += Vector2(0, -speed).rotated(rotation)
-		if not $ThrustSound.playing:
-			$ThrustSound.pitch_scale = (velocity.length() / 500) + 1
-			$ThrustSound.play()
+		thrust()
+		emit_trail()
+	else:
+		stop_emitting_trail()
 	if Input.is_action_just_pressed('shoot'):
 		shoot()
+
+
+func thrust():
+	velocity += Vector2(0, -speed).rotated(rotation)
+	if not $ThrustSound.playing:
+		$ThrustSound.pitch_scale = (velocity.length() / 500) + 1
+		$ThrustSound.play()
+
+
+func emit_trail():
+	$Trail.emitting = true
+
+
+func stop_emitting_trail():
+	$Trail.emitting = false
 
 
 func _physics_process(delta):

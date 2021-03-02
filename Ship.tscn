@@ -10,6 +10,17 @@
 collision_mask = 2
 script = ExtResource( 2 )
 
+[node name="Trail" type="CPUParticles2D" parent="."]
+position = Vector2( 0, 12 )
+emitting = false
+amount = 16
+lifetime_randomness = 0.3
+local_coords = false
+direction = Vector2( 0, 1 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 4.0
+
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
