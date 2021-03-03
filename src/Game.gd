@@ -18,6 +18,7 @@ var score = 0
 var replays_left
 var asteroids_left_in_round
 var game_over = false
+var rounds
 
 var max_replays = 3
 
@@ -39,6 +40,7 @@ func _ready():
 func initialize():
 	Results.final_score = 0
 	Results.max_score = Results.rounds * Results.round_length
+	rounds = Results.rounds
 
 
 func reset_score():
@@ -124,8 +126,8 @@ func is_round_over():
 
 
 func finish_round():
-	Results.rounds -= 1
-	if Results.rounds > 0:
+	rounds -= 1
+	if rounds > 0:
 		reset_asteroids_left_in_round()
 		choose_root()
 	else:

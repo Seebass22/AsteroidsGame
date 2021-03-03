@@ -10,7 +10,7 @@ func add_round():
 	rounds += 1
 
 
-func subtract_rounds():
+func subtract_round():
 	if rounds > 1:
 		rounds -= 1
 

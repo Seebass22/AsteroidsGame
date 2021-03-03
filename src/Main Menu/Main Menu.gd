@@ -2,8 +2,8 @@ extends Node2D
 
 export (NodePath) var _quit_path
 onready var _quit_button = get_node(_quit_path)
-export (NodePath) var _round_label_path
-onready var _round_label = get_node(_round_label_path)
+
+onready var setup_position = $Setup.rect_position
 
 func _ready():
 	if OS.get_name() == "HTML5":
@@ -11,11 +11,6 @@ func _ready():
 
 	TweenLib.tween_in_from_left($Buttons, 1)
 	TweenLib.tween_in_from_left($Title, 1.25)
-	update_rounds_label()
-
-
-func update_rounds_label():
-	_round_label.text = str(Results.round_length)
 
 
 func _on_PlayButton_button_up():
@@ -31,11 +26,7 @@ func _on_QuitButton_button_up():
 	get_tree().quit()
 
 
-func _on_add_round_pressed():
-	Results.increase_round_legth()
-	update_rounds_label()
-
-
-func _on_subtract_round_pressed():
-	Results.decrease_round_legth()
-	update_rounds_label()
+func _on_SetupButton_button_up():
+	$Setup.rect_position = setup_position
+	$Setup.visible = not $Setup.visible
+	TweenLib.tween_in_from_left($Setup, 0.8)
