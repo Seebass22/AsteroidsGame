@@ -29,13 +29,13 @@ font_data = ExtResource( 3 )
 size = 32
 font_data = ExtResource( 7 )
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 52, 44 )
-
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 9 )
 region = Rect2( 52, 0, 52, 44 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 52, 44 )
 
 [node name="Main Menu" type="Node2D"]
 script = ExtResource( 6 )
@@ -298,19 +298,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="add" type="TextureButton" parent="Setup/Set rounds/UI"]
-margin_right = 52.0
-margin_bottom = 44.0
-texture_normal = SubResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="subtract" type="TextureButton" parent="Setup/Set rounds/UI"]
 margin_left = 56.0
 margin_right = 108.0
 margin_bottom = 44.0
 texture_normal = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="add" type="TextureButton" parent="Setup/Set rounds/UI"]
+margin_right = 52.0
+margin_bottom = 44.0
+texture_normal = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -346,19 +346,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="add" type="TextureButton" parent="Setup/Set round length/UI"]
-margin_right = 52.0
-margin_bottom = 44.0
-texture_normal = SubResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="subtract" type="TextureButton" parent="Setup/Set round length/UI"]
 margin_left = 56.0
 margin_right = 108.0
 margin_bottom = 44.0
 texture_normal = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="add" type="TextureButton" parent="Setup/Set round length/UI"]
+margin_right = 52.0
+margin_bottom = 44.0
+texture_normal = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -376,7 +376,7 @@ text = "5"
 [connection signal="button_up" from="Buttons/SetupButton" to="." method="_on_SetupButton_button_up"]
 [connection signal="button_up" from="Buttons/HelpButton" to="." method="_on_HelpButton_button_up"]
 [connection signal="button_up" from="Buttons/QuitButton" to="." method="_on_QuitButton_button_up"]
-[connection signal="pressed" from="Setup/Set rounds/UI/add" to="Setup/Set rounds" method="_on_add_pressed"]
 [connection signal="pressed" from="Setup/Set rounds/UI/subtract" to="Setup/Set rounds" method="_on_subtract_pressed"]
-[connection signal="pressed" from="Setup/Set round length/UI/add" to="Setup/Set round length" method="_on_add_pressed"]
+[connection signal="pressed" from="Setup/Set rounds/UI/add" to="Setup/Set rounds" method="_on_add_pressed"]
 [connection signal="pressed" from="Setup/Set round length/UI/subtract" to="Setup/Set round length" method="_on_subtract_pressed"]
+[connection signal="pressed" from="Setup/Set round length/UI/add" to="Setup/Set round length" method="_on_add_pressed"]
