@@ -19,8 +19,6 @@ var replays_left
 var asteroids_left_in_round
 var game_over = false
 
-var round_length = 4
-var rounds = 2
 var max_replays = 3
 
 func _process(delta):
@@ -40,7 +38,7 @@ func _ready():
 
 func initialize():
 	Results.final_score = 0
-	Results.max_score = rounds * round_length
+	Results.max_score = Results.rounds * Results.round_length
 
 
 func reset_score():
@@ -78,7 +76,7 @@ func reset_replays_left():
 
 func reset_asteroids_left_in_round():
 	print('choosing new root\n')
-	asteroids_left_in_round = round_length
+	asteroids_left_in_round = Results.round_length
 
 
 func choose_correct_asteroid():
@@ -126,8 +124,8 @@ func is_round_over():
 
 
 func finish_round():
-	rounds -= 1
-	if rounds > 0:
+	Results.rounds -= 1
+	if Results.rounds > 0:
 		reset_asteroids_left_in_round()
 		choose_root()
 	else:

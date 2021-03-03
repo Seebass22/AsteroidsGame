@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/space_background_3.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/dogicapixelbold.ttf" type="DynamicFontData" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://Assets/menu_panel.png" type="Texture" id=4]
 [ext_resource path="res://Assets/button_small.png" type="Texture" id=5]
 [ext_resource path="res://src/Main Menu/Main Menu.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Fonts/Pixeltype.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://src/Main Menu/HelpTween.gd" type="Script" id=8]
+[ext_resource path="res://Assets/plus_minus_buttons.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -21,9 +23,22 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 7 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 52, 44 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 9 )
+region = Rect2( 52, 0, 52, 44 )
+
 [node name="Main Menu" type="Node2D"]
 script = ExtResource( 6 )
 _quit_path = NodePath("Buttons/QuitButton")
+_round_label_path = NodePath("Choose asteroids per round/UI/count")
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
@@ -226,6 +241,57 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="Help"]
+
+[node name="Choose asteroids per round" type="VBoxContainer" parent="."]
+margin_left = 593.379
+margin_top = 433.358
+margin_right = 833.379
+margin_bottom = 501.358
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="Choose asteroids per round"]
+margin_right = 240.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 5 )
+text = "asteroids per round"
+
+[node name="UI" type="HBoxContainer" parent="Choose asteroids per round"]
+margin_top = 24.0
+margin_right = 240.0
+margin_bottom = 68.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="add" type="TextureButton" parent="Choose asteroids per round/UI"]
+margin_right = 52.0
+margin_bottom = 44.0
+texture_normal = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="subtract" type="TextureButton" parent="Choose asteroids per round/UI"]
+margin_left = 56.0
+margin_right = 108.0
+margin_bottom = 44.0
+texture_normal = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="count" type="Label" parent="Choose asteroids per round/UI"]
+margin_left = 112.0
+margin_top = 12.0
+margin_right = 124.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 5 )
+text = "5"
 [connection signal="button_up" from="Buttons/PlayButton" to="." method="_on_PlayButton_button_up"]
 [connection signal="button_up" from="Buttons/HelpButton" to="." method="_on_HelpButton_button_up"]
 [connection signal="button_up" from="Buttons/QuitButton" to="." method="_on_QuitButton_button_up"]
+[connection signal="pressed" from="Choose asteroids per round/UI/add" to="." method="_on_add_round_pressed"]
+[connection signal="pressed" from="Choose asteroids per round/UI/subtract" to="." method="_on_subtract_round_pressed"]
