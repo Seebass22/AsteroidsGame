@@ -77,7 +77,7 @@ func reset_replays_left():
 
 
 func reset_asteroids_left_in_round():
-	print('reset')
+	print('choosing new root\n')
 	asteroids_left_in_round = round_length
 
 
@@ -97,6 +97,7 @@ func update_score_ui():
 
 
 func _on_correct_asteroid_destroyed(type_destroyed):
+	print("correct: ", current_chord)
 	if game_over:
 		return
 	asteroids_left_in_round -= 1
@@ -107,6 +108,7 @@ func _on_correct_asteroid_destroyed(type_destroyed):
 
 
 func _on_incorrect_asteroid_destroyed(type_destroyed):
+	print("wrong: ", current_chord)
 	if game_over:
 		return
 	asteroids_left_in_round -= 1
@@ -136,7 +138,6 @@ func finish_round():
 
 
 func next_chord(type_destroyed):
-	print(asteroids_left_in_round)
 	reset_replays_left()
 	replace_destroyed_asteroid(type_destroyed)
 
