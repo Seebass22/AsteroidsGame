@@ -26,6 +26,4 @@ func _on_QuitButton_button_up():
 
 
 func _on_SetupButton_button_up():
-	$Setup.rect_position = setup_position
-	$Setup.visible = not $Setup.visible
-	TweenLib.tween_in_from_left($Setup, 0.8)
+	TweenLib.toggle_tween($Setup, 0.8)
