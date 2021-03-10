@@ -33,10 +33,12 @@ polygon = PoolVector2Array( 0.0815886, -10.1537, 9.98632, 2.58387, 9.98632, 9.96
 [node name="ThrustSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -21.0
+bus = "SFX"
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -12.0
+bus = "SFX"
 
 [node name="bullet_flash" type="Sprite" parent="."]
 visible = false

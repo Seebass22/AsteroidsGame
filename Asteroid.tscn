@@ -41,6 +41,7 @@ frames = SubResource( 1 )
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -6.0
+bus = "SFX"
 
 [node name="LabelPivot" type="Control" parent="."]
 anchor_right = 5.0
