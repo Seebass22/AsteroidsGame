@@ -8,7 +8,7 @@ onready var _sound = get_node(_sound_path)
 onready var _score = get_node(_score_path)
 
 var asteroids = []
-var starting_choices = ["maj", "min", "dim", "aug", "sus2", "sus4"]
+# var starting_choices = ["maj", "min", "dim", "aug", "sus2", "sus4"]
 # var starting_choices = ["7", "maj7", "min7", "dim7", "half-dim7", "min-maj7"]
 
 var choices
@@ -48,7 +48,7 @@ func reset_score():
 
 
 func set_up_game():
-	choices = starting_choices.duplicate()
+	choices = Results.starting_choices.duplicate()
 
 	choose_root()
 	reset_replays_left()
