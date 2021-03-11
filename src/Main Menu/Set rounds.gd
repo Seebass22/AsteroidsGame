@@ -7,14 +7,14 @@ func _ready():
 
 
 func update_label():
-	_label.text = str(Results.rounds)
+	_label.text = str(Settings.rounds)
 
 
 func _on_add_pressed():
-	Results.add_round()
+	Settings.add_round()
 	update_label()
 
 
 func _on_subtract_pressed():
-	Results.subtract_round()
+	Settings.subtract_round()
 	update_label()

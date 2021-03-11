@@ -39,8 +39,8 @@ func _ready():
 
 func initialize():
 	Results.final_score = 0
-	Results.max_score = Results.rounds * Results.round_length
-	rounds = Results.rounds
+	Results.max_score = Settings.rounds * Settings.round_length
+	rounds = Settings.rounds
 
 
 func reset_score():
@@ -48,7 +48,7 @@ func reset_score():
 
 
 func set_up_game():
-	choices = Results.starting_choices.duplicate()
+	choices = Settings.starting_choices.duplicate()
 
 	choose_root()
 	reset_replays_left()
@@ -78,7 +78,7 @@ func reset_replays_left():
 
 func reset_asteroids_left_in_round():
 	print('choosing new root\n')
-	asteroids_left_in_round = Results.round_length
+	asteroids_left_in_round = Settings.round_length
 
 
 func choose_correct_asteroid():

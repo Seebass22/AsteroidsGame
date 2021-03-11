@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 GameEvents="*res://src/Singletons/GameEvents.gd"
 Results="*res://src/Singletons/Results.gd"
+Settings="*res://src/Singletons/Settings.gd"
 
 [display]
 
