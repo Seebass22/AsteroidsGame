@@ -8,13 +8,13 @@ build_dir:
 	@mkdir -p build/$(GAME_NAME)-html5
 	@mkdir -p build/$(GAME_NAME)-osx
 
-icon:
+icon.ico: icon.png
 	convert -background transparent icon.png -define icon:auto-resize=16,32,64,256 icon.ico
 
 linux: build_dir
 	godot --export "Linux/X11" build/$(GAME_NAME)-linux/$(GAME_NAME)
 
-windows: build_dir icon
+windows: build_dir icon.ico
 	godot --export "Windows Desktop" build/$(GAME_NAME)-windows/$(GAME_NAME).exe
 
 osx: build_dir
