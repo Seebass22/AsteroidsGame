@@ -133,7 +133,8 @@ func finish_round():
 	else:
 		Results.final_score = score
 		game_over = true
-		yield(get_tree().create_timer(2.0), "timeout")
+		$Timers/GameOver.start()
+		yield($Timers/GameOver, "timeout")
 		get_tree().change_scene("res://Game Over.tscn")
 
 
@@ -143,7 +144,8 @@ func next_chord(type_destroyed):
 
 	var correct_index = choose_correct_asteroid()
 
-	yield(get_tree().create_timer(1.0), "timeout")
+	$Timers/NextChord.start()
+	yield($Timers/NextChord, "timeout")
 	if correct_index < choices.size():
 		_sound.setUpAndPlayChord(root, current_chord)
 

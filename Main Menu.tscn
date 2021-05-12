@@ -406,6 +406,7 @@ text = "triads+sus"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="button_up" from="Buttons/PlayButton" to="." method="_on_PlayButton_button_up"]
 [connection signal="button_up" from="Buttons/SetupButton" to="." method="_on_SetupButton_button_up"]
 [connection signal="button_up" from="Buttons/HelpButton" to="." method="_on_HelpButton_button_up"]

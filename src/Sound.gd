@@ -11,7 +11,7 @@ var chordType = ["maj", "min", "dim", "aug", "sus2", "sus4"]
 export (bool) var test = false
 export (int) var rootNote = -8
 export (String) var currentChordType = "maj"
-export (bool) var playChordProgression = true
+
 
 func _ready():
 	noteNode.append($Note1)
@@ -91,20 +91,5 @@ func debugPrintNoteInfo():
 	print('note pitch scales: ', notePitchScales)
 
 
-func play_I_IV_V_I():
-	var noteDelay = 0.5
-	var root = rootNote
-	setUpAndPlayChord(root, "maj")
-	yield(get_tree().create_timer(noteDelay), "timeout")
-	setUpAndPlayChord(root - 7, "maj")
-	yield(get_tree().create_timer(noteDelay), "timeout")
-	setUpAndPlayChord(root -5, "maj")
-	yield(get_tree().create_timer(noteDelay), "timeout")
-	setUpAndPlayChord(root, "maj")
-
-
 func __test():
-	if (playChordProgression):
-		play_I_IV_V_I()
-	else:
-		setUpAndPlayChord(rootNote, currentChordType)
+	setUpAndPlayChord(rootNote, currentChordType)
