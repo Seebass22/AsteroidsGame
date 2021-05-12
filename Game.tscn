@@ -119,7 +119,6 @@ margin_left = 408.486
 margin_top = 208.636
 margin_right = 408.486
 margin_bottom = 208.636
-_quit_path = NodePath("../UI/PauseMenu/VBoxContainer/Buttons/quit")
 
 [node name="Timers" type="Node2D" parent="."]
 position = Vector2( 0, -2 )

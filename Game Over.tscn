@@ -152,6 +152,7 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="Menu"]
+
 [connection signal="button_up" from="Menu/Restart/Button" to="." method="_on_Restart_button_up"]
 [connection signal="button_up" from="Menu/Menu/Button" to="." method="_on_Menu_button_up"]
 [connection signal="button_up" from="Menu/Quit/Button" to="." method="_on_Quit_button_up"]

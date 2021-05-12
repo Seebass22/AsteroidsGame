@@ -1,13 +1,11 @@
 extends Control
 
-export (NodePath) var _quit_path
-onready var _quit_button = get_node(_quit_path)
 
 func _ready():
-	if OS.get_name() == "HTML5":
-		_quit_button.visible = false
-
 	self.visible = false
+
+	if OS.get_name() == "HTML5":
+		$VBoxContainer/Buttons/quit.visible = false
 
 
 func _process(delta):
